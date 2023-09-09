@@ -1,16 +1,17 @@
 package org.example;
 
-import com.sun.jdi.connect.Transport;
-
+import javax.mail.Authenticator;
+import javax.mail.Message;
 import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.net.Authenticator;
 import java.util.Properties;
 
 public class MailHandler {
     public void sendMail(){
-  ///property
-     //something like a map
+        ///property
+        //something like a map
 
         Properties sysPropMap  = System.getProperties();
         System.out.println(sysPropMap);
@@ -23,28 +24,28 @@ public class MailHandler {
 
         //authentication
 
-       Authenticator authenticator = new CustomizedMailAuthentication();
+        Authenticator authenticator = new CustomizedMailAuthentication();
         Session mailsession =  Session.getInstance(sysPropMap, authenticator);
-       // Authenticator mailAuthenticator = new CustomizedMailAuthenticator();
+        // Authenticator mailAuthenticator = new CustomizedMailAuthenticator();
 
 
         //session
-       // Session mailSession = Session.getInstance(sysPropertiesMap,mailAuthenticator);
+        // Session mailSession = Session.getInstance(sysPropertiesMap,mailAuthenticator);
 
 
         //build the mail
         // my message
-      MimeMessage mailmessage = new MimeMessage(mailsession);
-      try {
-          mailmessage.setFrom(MailConstants.SENDER);
-          mailmessage.setSubject("mailing pgl person");
-          mailmessage.setRecipient(Message.RecepientType.To, new InternetAddress("raivandana9999@gmail.com"));
-          mailmessage.setText("Pagal Insan haii tu....");
-          Transport.send(mailmessage);
-      }
-      catch(Exception e){
-          System.out.println("some error");
-      }
+        MimeMessage mailmessage = new MimeMessage(mailsession);
+        try {
+            mailmessage.setFrom(MailConstants.SENDER);
+            mailmessage.setSubject("mailing pgl person");
+            mailmessage.setRecipient(Message.RecipientType.TO, new InternetAddress("raivandana9999@gmail.com"));
+            mailmessage.setText("Ritika kya hai??");
+            Transport.send(mailmessage);
+        }
+        catch(Exception e){
+            System.out.println("some error");
+        }
 
     }
 }

@@ -1,12 +1,16 @@
 package org.example;
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
+
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+
 
 public class CustomizedMailAuthentication extends Authenticator {
 
     @Override
-    protected PasswordAuthentication getPasswordAuthentication() {
+    protected PasswordAuthentication getPasswordAuthentication()
+    {
+        return new PasswordAuthentication(MailConstants.SENDER, MailConstants.APP_PASSWORD);
 
-   return new PasswordAuthentication(MailConstants.SENDER, MailConstants.APP_PASSWORD.toCharArray());
     }
 }
